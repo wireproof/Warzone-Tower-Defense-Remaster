@@ -1,0 +1,10 @@
+.DS_Store
+._*
+*.mobileprovision
+*.p12
+*.key
+*.ipa
+xcuserdata/
+DerivedData/
+build/
+build-sim/

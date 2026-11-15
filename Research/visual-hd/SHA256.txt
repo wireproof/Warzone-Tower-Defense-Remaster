@@ -1,0 +1,5 @@
+106e431c5fc5707b28b2bea429f4de93adf8aaa72ca2199017f19734f8b111bd  Research/patch/warzone-visual-v1.swf
+ebad4c02b79ff2220ddcd5b16416077a95d15c921bb37022fabcf30771fcd379  Research/visual-hd/warzone-hd-v2.swf
+fedbebcb1b29dad34865f923b430bbac8dd055552937e838bf7e1a3f309da90e  Research/visual-hd/warzone-hd-final.swf
+d4a1a36248d25c79edb100b26745a6e08589bad5a7a8825b491bfa474db67087  app/Resources/Web/game.swf
+d4a1a36248d25c79edb100b26745a6e08589bad5a7a8825b491bfa474db67087  Research/visual-hd/warzone-hd-title.swf
