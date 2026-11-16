@@ -14,7 +14,7 @@ Open `WarzoneTD.xcodeproj` in Xcode, select your own Apple development team and 
 
 `Original/` contains the supplied SWF; `Research/export/` contains recovered assets and decompiled material, and `Research/patch/` and `Research/visual-hd/` contain patch and visual research. `Assets/`, `app/`, `tools/` and `tests/` contain the art, wrapper, build helpers and checks. The bundled Ruffle license is in `app/Resources/Web/RUFFLE-LICENSE.md`. Decompiled code is approximate and must be checked against game behavior.
 
-The supplied original SWF has SHA-256 `0b72ae56bf088cb417cc9feb44092f27c94d7e41fde1039595121e8b7f83e9e8`; the current modified game SWF has SHA-256 `d4a1a36248d25c79edb100b26745a6e08589bad5a7a8825b491bfa474db67087`.
+The supplied original SWF has SHA-256 `0b72ae56bf088cb417cc9feb44092f27c94d7e41fde1039595121e8b7f83e9e8`; the current modified game SWF has SHA-256 `b0c2d5be0ec5288dcafc0193d7cfb2c4f515461d449be06f296599df72797a79`.
 
 ## Background playback update
 
