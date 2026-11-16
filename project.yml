@@ -27,5 +27,5 @@ targets:
         INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: 'UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: 'UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
-        MARKETING_VERSION: '0.3.2'
-        CURRENT_PROJECT_VERSION: '8'
+        MARKETING_VERSION: '0.3.3'
+        CURRENT_PROJECT_VERSION: '9'
