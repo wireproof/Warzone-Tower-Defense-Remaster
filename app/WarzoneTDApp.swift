@@ -45,7 +45,7 @@ struct GameView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration(); config.mediaTypesRequiringUserActionForPlayback = []
         config.userContentController.add(context.coordinator, name: "status")
-        let web = WKWebView(frame: .zero, configuration: config); web.isOpaque = false; web.backgroundColor = .black
+        let web = WKWebView(frame: .zero, configuration: config); context.coordinator.observeLifecycle(web); web.isOpaque = false; web.backgroundColor = .black
         web.scrollView.isScrollEnabled = false; web.navigationDelegate = context.coordinator
         context.coordinator.server.onReady = { [weak web] url in web?.load(URLRequest(url: url)) }
         do { try context.coordinator.server.start() } catch { web.loadHTMLString("<h2>Could not start game</h2>", baseURL: nil) }
@@ -54,6 +54,24 @@ struct GameView: UIViewRepresentable {
     func updateUIView(_ view: WKWebView, context: Context) {}
     final class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler {
         let server = LocalServer()
+        private weak var webView: WKWebView?
+        private var observers: [NSObjectProtocol] = []
+        func observeLifecycle(_ web: WKWebView) {
+            webView = web
+            let center = NotificationCenter.default
+            for name in [UIApplication.willResignActiveNotification, UIApplication.didEnterBackgroundNotification,
+                         UIApplication.didBecomeActiveNotification] {
+                observers.append(center.addObserver(forName: name, object: nil, queue: .main) { [weak self] _ in
+                    self?.syncLifecycle(active: name == UIApplication.didBecomeActiveNotification)
+                })
+            }
+        }
+        private func syncLifecycle(active: Bool) {
+            webView?.evaluateJavaScript("window.WarzoneLifecycle?.setActive(\(active ? "true" : "false"))", completionHandler: nil)
+            webView?.setAllMediaPlaybackSuspended(!active, completionHandler: nil)
+        }
+        deinit { observers.forEach { NotificationCenter.default.removeObserver($0) } }
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { syncLifecycle(active: UIApplication.shared.applicationState == .active) }
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) { NSLog("Warzone: %@", String(describing: message.body)) }
         func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             let url = action.request.url; decisionHandler(url?.host == "127.0.0.1" || url?.scheme == "about" ? .allow : .cancel)
